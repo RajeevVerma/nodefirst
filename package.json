@@ -1,0 +1,22 @@
+{
+  "name": "nodefirst",
+  "version": "1.0.0",
+  "description": "first node app",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RajeevVerma/nodefirst.git"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "Rajeev verma",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RajeevVerma/nodefirst/issues"
+  },
+  "homepage": "https://github.com/RajeevVerma/nodefirst#readme"
+}
