@@ -1,0 +1,12 @@
+ <div id="todo-list" class="row">
+            <div class="col-sm-4 col-sm-offset-4">
+
+                <!-- LOOP OVER THE TODOS IN $scope.todos -->
+                <div class="checkbox" ng-repeat="todo in todos">
+                    <label>
+                     <a href='#/detail?id={{ todo._id }}'>   <input type="checkbox" ng-click=""> {{ todo.name }} </a>
+                    </label>
+                </div>
+
+            </div>
+        </div>

@@ -1,0 +1,15 @@
+
+<!-- about.html -->
+    <div class="jumbotron text-center">
+        <a onclick="history.back()">Back</a>
+        <h1>About Page</h1>
+
+        <p>{{ data.restaurant_id }}: {{data.name}}</p>
+        <p>borough: {{ data.borough }}</p>
+        <p>cuisine: {{ data.cuisine }}</p>
+        <address>
+           building: {{data.address.building}}<br> 
+        {{data.address.street}}, {{data.address.zipcode}}<br>
+        USA
+        </address>
+    </div>
