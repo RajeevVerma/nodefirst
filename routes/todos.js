@@ -1,16 +1,8 @@
 /* global Todo */
 var express = require('express');
 var router = express.Router();
- var mongoose = require('mongoose'); 
- mongoose.connect('mongodb://localhost/' + cfg.security.dbName ); 
-// define model =================
-    var Todo = mongoose.model('restaurants', {
-        address : {
-            building : String,
-                        
-        },
-        name: String
-    });
+var mongoose = require('mongoose');
+var Todo = require('../Todo');
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   // use mongoose to get all todos in the database

@@ -8,8 +8,11 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
- var mongoose = require('mongoose');   
+var mongoose = require('mongoose');   
+var passport  = require('passport');
 var app = express();
+var appConfiguration = require('.\serverModules\config.js');
+var authentication = require('.\serverModules\security.js');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -21,7 +24,11 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+var expressSession = require('express-session');
+app.use(expressSession({secret: 'mySecretKey'}));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(passport.initialize());                             // Initialize PassportJS
+app.use(passport.session());                                // Use Passport's session authentication strategy - this stores the logged in user in the session and will now run on any request
 
 app.get('/', function(req, res) {
         res.sendFile('./views/index.html', { root: __dirname }); // load the single view file (angular will handle the page changes on the front-end)
@@ -30,6 +37,7 @@ app.get('/', function(req, res) {
  app.get('/views/*', function(req, res){
          res.sendFile(req.originalUrl, { root: __dirname }); // load the single view file (angular will handle the page changes on the front-end)
     });
+app.user('/api/authenticate', security);
 app.use('/users', users);
 //mongoose.connect('mongodb://node:nodeuser@mongo.onmodulus.net:27017/uwO3mypu'); 
 

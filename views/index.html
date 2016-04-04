@@ -21,27 +21,29 @@
     <!-- SPELLS -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
-   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+   <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>-->
     <script src=" //ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-resource.js"></script>
-         
+       <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>    
+    <script src="../javascripts/authenticationService.js"></script>
     <script src="../javascripts/services.js"></script>
     <script src="../javascripts/index.js"></script>
+    
     <script src="../javascripts/detail.js"></script>
     
 
 </head>
 <!-- SET THE CONTROLLER AND GET ALL TODOS -->
-<body ng-controller="mainController">
+<body>
     <div class="container">
-
+HI
         <!-- HEADER AND TODO COUNT -->
-        <div class="jumbotron text-center">
-            <h1>I'm a Todo-aholic <span class="label label-info">{{ todos.length }}</span></h1>
+        <div ui-view="viewB">
+            
         </div>
 
         <!-- TODO LIST -->
        <div id="main">
-            <div ng-view></div>
+            <div ui-view="viewA"></div>
 
        </div>
 
