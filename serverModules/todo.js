@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 // define model =================
-module.exports = mongoose.model('Todo', {
+module.exports = mongoose.model('restaurants', {
     address: {
         building: String,
 

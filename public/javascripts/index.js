@@ -44,12 +44,27 @@ var detailRoute = {
         }
     }
 };
+var signup = {
+    url: '/signup',
+    views: {
+        "viewA": {
+             templateUrl: 'views/signup.html',
+            controller: 'signupController'
+        },
+        "viewB": {
+            templateUrl: 'views/header.html',
+            controller: 'loginController'
+        }
+        
+    }
+}
 scotchTodo.config(function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
     $stateProvider
         .state('/', loginRoute)
         .state('/main', mainRoute)
-        .state('/detail', detailRoute);
+        .state('/detail', detailRoute)
+        .state('/signup', signup);
 });
 
 scotchTodo.controller('loginController', ['authentication', '$scope', '$http', '$location', function(authentication, $scope, $http, $location) {
@@ -59,15 +74,33 @@ scotchTodo.controller('loginController', ['authentication', '$scope', '$http', '
         authentication.Login($scope.userName, $scope.password, function() {
             $location.path("/main");
         });
+    }
+      $scope.signupRedirect = function() {
+      
+            $location.path("/signup");
+      
+    }
+}]);
+
+scotchTodo.controller('signupController', ['authentication', '$scope', '$http', '$location', function(authentication, $scope, $http, $location) {
+
+    $scope.singupSubmit = function() {
+
+        authentication.Signup($scope.username, $scope.password, function(res) {
+            console.log(res);
+            $location.path("/main");
+        });
 
     }
+    
+   
 }]);
 
 scotchTodo.controller('mainController', function($scope, $http) {
     $scope.formData = {};
 
     // when landing on the page, get all todos and show them
-    $http.get('/users')
+    $http.get('/todos')
         .success(function(data) {
             $scope.todos = data;
             console.log(data);
@@ -78,7 +111,7 @@ scotchTodo.controller('mainController', function($scope, $http) {
 
     // when submitting the add form, send the text to the node API
     $scope.createTodo = function() {
-        $http.post('/users/todos', $scope.formData)
+        $http.post('/todos', $scope.formData)
             .success(function(data) {
                 $scope.formData = {}; // clear the form so our user is ready to enter another
                 $scope.todos = data;

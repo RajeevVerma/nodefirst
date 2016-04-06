@@ -8,10 +8,21 @@ authenticationService.factory('authentication', ['$http', function($http) {
 
         /* Use this for real authentication
          ----------------------------------------------*/
-        $http.post('/api/authenticate', {
-            username: username,
-            password: password
-        })
+        $http.post('/authenticate/', {
+                username: username,
+                password: password
+            })
+            .success(function(response) {
+                callback(response);
+            });
+
+    };
+
+    service.Signup = function(username, password, callback) {
+        $http.post('/authenticate/signup', {
+                username: username,
+                password: password
+            })
             .success(function(response) {
                 callback(response);
             });

@@ -7,12 +7,12 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
+var todos = require('./routes/todos');
 var mongoose = require('mongoose');   
 var passport  = require('passport');
 var app = express();
-var appConfiguration = require('.\serverModules\config.js');
-var authentication = require('.\serverModules\security.js');
+var appConfiguration = require('./serverModules/config')();
+var security = require('./routes/security');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -37,8 +37,9 @@ app.get('/', function(req, res) {
  app.get('/views/*', function(req, res){
          res.sendFile(req.originalUrl, { root: __dirname }); // load the single view file (angular will handle the page changes on the front-end)
     });
-app.user('/api/authenticate', security);
-app.use('/users', users);
+app.use('/authenticate', security);
+
+app.use('/todos', todos);
 //mongoose.connect('mongodb://node:nodeuser@mongo.onmodulus.net:27017/uwO3mypu'); 
 
 
